@@ -59,9 +59,11 @@ p{margin:0}
 .fw.top{perspective:6000px;perspective-origin:50% 50%;z-index:4;filter:drop-shadow(0 1.2px 1.2px rgba(70,62,55,.22)) drop-shadow(0 3px 7px rgba(70,62,55,.1))}
 .surf{position:absolute;inset:0}
 .surf svg{position:absolute;inset:0;width:100%;height:100%}
-.surf.body{clip-path:polygon(0 0,43.6% 53.3%,43.6% 61%,45.9% 61%,50% 57.5%,54.1% 61%,56.4% 61%,56.4% 53.3%,100% 0,100% 100%,0 100%);background-color:#e9e7e4;background-image:var(--tex,none),linear-gradient(180deg,#eeecea,#e5e2df);background-blend-mode:multiply}
+.surf.body{clip-path:polygon(0 0,43.6% 53.3%,43.6% 61%,45.9% 61%,50% 57.5%,54.1% 61%,56.4% 61%,56.4% 53.3%,100% 0,100% 100%,0 100%);background:#e9e8e6 url(img/paper.jpg) center/100% 100% no-repeat}
 .surf.body svg.crease{mix-blend-mode:normal}
-.surf.flap{clip-path:polygon(0 0,100% 0,50% 62%);background-color:#efedea;background-image:var(--tex,none),linear-gradient(180deg,#f4f2f0,#e9e7e4);background-blend-mode:multiply;transform-origin:50% 0;will-change:transform}
+.surf.flap{clip-path:polygon(0 0,100% 0,50% 62%);background:#eeedeb url(img/paper.jpg) center/100% 100% no-repeat;transform-origin:50% 0;will-change:transform}
+.surf.flap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.06))}
+.surf .glint{position:absolute;inset:0;background:url(img/paper-glint.webp) center/100% 100% no-repeat}
 .emb{filter:drop-shadow(-.7px -.7px .3px rgba(255,255,255,.98)) drop-shadow(.8px 1px .7px rgba(100,92,86,.34))}
 @property --gr{syntax:'<percentage>';inherits:false;initial-value:0%}
 .glint{opacity:0;pointer-events:none;--gr:0%;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 5px rgba(255,255,255,.95));
@@ -123,17 +125,17 @@ p{margin:0}
 
 /* ---------- hero ---------- */
 .hero{position:relative;container-type:inline-size;overflow:hidden;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.hero-front{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.walk{position:absolute;left:30%;top:65.79%;width:67.5%;aspect-ratio:1;transform-origin:29.6% -8.1%;animation:walk 20s linear infinite;will-change:transform,opacity;pointer-events:none}
-.walk svg{display:block;width:100%;height:100%;overflow:visible}
+.hero-img{display:block;width:100%;height:auto}
+.walk{position:absolute;left:37.4%;top:67%;width:42%;transform-origin:30% -10%;animation:walk 22s linear infinite;will-change:transform,opacity;pointer-events:none}
+.walk img{display:block;width:100%;height:auto;filter:drop-shadow(0 6px 10px rgba(120,95,110,.22))}
+.hero-mist{position:absolute;left:0;right:0;bottom:0;height:16%;pointer-events:none;background:linear-gradient(180deg,rgba(251,249,245,0),rgba(251,249,245,.75) 55%,#fbf9f5)}
 .bob{transform-origin:35% 100%;animation:bob2 1.05s ease-in-out infinite alternate;will-change:transform}
-@keyframes walk{0%{opacity:0;transform:scale(1.2)}5%{opacity:1}90%{opacity:1}100%{opacity:0;transform:scale(.7)}}
+@keyframes walk{0%{opacity:0;transform:scale(1.14)}6%{opacity:1}88%{opacity:1}100%{opacity:0;transform:scale(.66)}}
 @keyframes bob2{from{transform:translateY(0) rotate(-.7deg)}to{transform:translateY(-1.1%) rotate(.7deg)}}
 body.locked .hero{transform:scale(1.04)}
-.hero>svg{display:block;width:100%;height:auto}
 .lan{position:absolute;height:auto;transform-origin:50% 2.2%;animation:swing 5s ease-in-out infinite alternate;will-change:transform;pointer-events:none}
 @keyframes swing{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
-.hero-text{position:absolute;left:18%;right:18%;top:24.6%;text-align:center;color:var(--ink)}
+.hero-text{position:absolute;left:18%;right:18%;top:21.5%;text-align:center;color:var(--ink)}
 .hero-text .w{font-family:var(--serif);font-size:4.1cqw;letter-spacing:.02em;color:#6e6066;line-height:1.2}
 .hero-text .c{font-family:var(--script);font-size:7cqw;white-space:nowrap;line-height:1.15;color:#6e6066}
 .hero-text .of{font-family:var(--serif);font-style:italic;font-size:3.8cqw;margin:.6cqw 0 0;color:#7c6f74}
@@ -211,7 +213,7 @@ body.locked .hero{transform:scale(1.04)}
 .tl-item::after{content:"";position:absolute;left:50%;bottom:2px;width:6px;height:6px;margin-left:-3px;transform:rotate(45deg);border:1px solid var(--gold);background:var(--paper)}
 .tl-item:last-of-type::after{display:none}
 .tl-art{grid-column:1;grid-row:1;justify-self:center;width:100%;max-width:158px}
-.tl-art svg{display:block;width:100%;height:auto;overflow:visible}
+.tl-art img{display:block;width:118%;max-width:none;height:auto;margin:-9%}
 .tl-node{grid-column:2;grid-row:1;justify-self:center;width:28px;height:28px;position:relative}
 .tl-node svg{display:block;width:100%;height:100%}
 .tl-text{grid-column:3;grid-row:1;min-width:0;padding:0 4px}
@@ -233,7 +235,8 @@ body.locked .hero{transform:scale(1.04)}
 .places{display:flex;flex-direction:column;gap:26px;margin-top:22px}
 .place .venue{margin:4px 0 12px}
 .venue-art{position:relative;margin:26px calc(-1 * max(22px,env(safe-area-inset-left,0px))) 0}
-.venue-art svg{display:block;width:100%;height:auto}
+.venue-art img{display:block;width:100%;height:auto}
+.venue-art::before{content:"";position:absolute;left:0;right:0;top:0;height:34%;background:linear-gradient(180deg,#fbf9f5,rgba(251,249,245,0));pointer-events:none}
 
 /* ---------- closing ---------- */
 .closing .names{font-family:var(--script);font-size:46px;color:var(--ink);margin-top:6px}
@@ -362,12 +365,10 @@ body.locked .hero{transform:scale(1.04)}
     <div class="inlit" id="inlit"></div>
     <div class="fw body"><div class="surf body">
       <svg class="crease" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,100 50,57.5 100,100" fill="rgba(255,255,255,.2)"/><path d="M0 100L50 57.5L100 100" fill="none" stroke="rgba(90,80,70,.28)" stroke-width="1.6" vector-effect="non-scaling-stroke" transform="translate(0 -.12)"/><path d="M0 100L50 57.5L100 100" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="1.2" vector-effect="non-scaling-stroke" transform="translate(0 .1)"/></svg>
-      <svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" id="embBody"></svg>
-      <svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" class="glint" id="glBody"></svg>
+      <div class="glint"></div>
     </div></div>
     <div class="fw top"><div class="surf flap" id="flapT">
-      <svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" id="embFlap"></svg>
-      <svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" class="glint" id="glFlap"></svg>
+      <div class="glint"></div>
     </div></div>
     <div class="sheen" id="sheen"></div>
     <div class="warm" id="warm"></div>
@@ -383,12 +384,9 @@ body.locked .hero{transform:scale(1.04)}
           <linearGradient id="shineG" x1="0" y1="0" x2="1" y2="0"><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset=".7" stop-color="#fff" stop-opacity="0"/></linearGradient>
           <radialGradient id="sealGlow"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity=".25"/></radialGradient>
         </defs>
-        <path id="sealBlob" fill="url(#wax)" stroke="rgba(150,145,165,.35)" stroke-width=".8"/>
-        <circle r="37" fill="url(#wax2)"/>
-        <circle r="37" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="1.6" transform="translate(-.9 -.9)"/>
-        <circle r="37" fill="none" stroke="rgba(110,105,125,.35)" stroke-width="1.6" transform="translate(.9 .9)"/>
-        <g id="sealWreath" class="emb" fill="#efedf0" stroke="rgba(130,125,145,.4)" stroke-width=".6"></g>
-        <text id="sealInit" class="emb" y="2" text-anchor="middle" dominant-baseline="middle" font-family="Pinyon Script, cursive" font-size="25" fill="#ecebef" stroke="rgba(120,115,135,.45)" stroke-width=".5">T&amp;V</text>
+        <path id="sealBlob" fill="none"/>
+        <image href="img/seal.webp" x="-58" y="-60" width="116" height="120" preserveAspectRatio="xMidYMid meet"/>
+        <g id="sealWreath" style="display:none"></g><text id="sealInit" style="display:none"></text>
         <circle class="sglow" r="38" fill="url(#sealGlow)"/>
         <g class="orbit" fill="none" stroke="#fff" stroke-linecap="round"><circle r="39" stroke-width="18" stroke-opacity=".35" stroke-dasharray="100 245"/><circle r="39" stroke-width="15" stroke-opacity=".65" stroke-dasharray="62 245" stroke-dashoffset="-38"/><circle r="39" stroke-width="12" stroke-dasharray="30 245" stroke-dashoffset="-70"/></g>
         <g clip-path="url(#sealClip)"><g class="shine"><rect x="-60" y="-60" width="120" height="120" fill="url(#shineG)" transform="rotate(-25)"/></g></g>
@@ -407,7 +405,7 @@ body.locked .hero{transform:scale(1.04)}
 <main class="col paper-tex" id="main">
 
   <section class="hero" aria-label="Welcome">
-    <svg viewBox="0 0 400 760" id="heroSvg" role="img" aria-label="A couple walking toward a white chapel, framed by a carved ivory arch with lanterns and roses">
+    <svg class="defs" id="heroSvg" aria-hidden="true" focusable="false">
       <defs>
         <clipPath id="win"><path d="M44 760V262C44 170 130 110 200 84C270 110 356 170 356 262V760Z"/></clipPath>
         <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
@@ -473,67 +471,14 @@ body.locked .hero{transform:scale(1.04)}
         </g>
       </defs>
 
-      <rect width="400" height="760" fill="#fbf9f5"/>
-      <g clip-path="url(#win)">
-        <rect width="400" height="480" fill="url(#sky)"/>
-        <rect width="400" height="760" fill="url(#sun)"/>
-        <g fill="url(#cloud)" opacity=".75">
-          <ellipse cx="120" cy="300" rx="110" ry="22"/><ellipse cx="290" cy="336" rx="130" ry="20"/><ellipse cx="210" cy="250" rx="90" ry="14"/><ellipse cx="90" cy="400" rx="100" ry="14"/>
-        </g>
-        <rect y="478" width="400" height="282" fill="url(#water)"/>
-        <use href="#church"/>
-        <use href="#church" transform="translate(0 956) scale(1 -1)" opacity=".28"/>
-        <g stroke="#fff" stroke-linecap="round" opacity=".7">
-          <path d="M120 492H170M230 498H300M90 510H140M250 520H310M150 530H200" stroke-width="1.2"/>
-        </g>
-      </g>
     </svg>
-    <div class="walk" aria-hidden="true"><div class="bob"><svg viewBox="120 500 270 270">
-        <g>
-          <ellipse cx="200" cy="772" rx="90" ry="10" fill="#e6dcd3" opacity=".6"/>
-          <path d="M152 602C146 630 145 660 148 690L156 690C155 660 156 632 160 608Z" fill="#e1d1b6"/>
-          <path d="M150 600C152 584 162 576 176 575C190 576 200 584 202 600L206 680L210 770H142L146 680Z" fill="url(#coat)"/>
-          <path d="M176 585V770" stroke="#cdb894" stroke-width="1"/>
-          <path d="M150 640C165 646 188 646 204 640" stroke="#d5c29f" stroke-width=".8" fill="none"/>
-          <path d="M198 604C204 625 208 640 214 650L220 646C214 632 210 618 204 600Z" fill="#e1d1b6"/>
-          <path d="M166 576C170 572 182 572 186 576L184 582C180 579 172 579 168 582Z" fill="#d6c3a3"/>
-          <rect x="170" y="562" width="12" height="14" rx="3" fill="#6f4632"/>
-          <ellipse cx="163.6" cy="555" rx="2" ry="3.6" fill="#6f4632"/><ellipse cx="188.4" cy="555" rx="2" ry="3.6" fill="#6f4632"/>
-          <ellipse cx="176" cy="551" rx="12.5" ry="14.5" fill="#1d1613"/>
-          <path d="M212 604C214 590 220 584 228 583C236 584 242 590 244 604C250 650 258 700 300 760L310 770H198C202 720 206 660 212 604Z" fill="url(#gown)"/>
-          <path d="M214 606C212 625 214 640 216 650L222 650C220 636 220 622 222 608Z" fill="#efe5d6"/>
-          <ellipse cx="228" cy="553" rx="11" ry="13" fill="#231a16"/>
-          <path d="M218 548C220 536 236 536 238 548C246 590 264 650 302 708C324 740 352 758 378 770H200C205 700 209 620 214 570Z" fill="#fffdf8" opacity=".55"/>
-          <path d="M218 548C220 536 236 536 238 548C246 590 264 650 302 708C324 740 352 758 378 770H200C205 700 209 620 214 570Z" fill="url(#lace)" opacity=".7"/>
-          <path d="M238 548C246 590 264 650 302 708C324 740 352 758 378 770" fill="none" stroke="#efe7da" stroke-width="1.4"/>
-        </g>
-    </svg></div></div>
-    <svg class="hero-front" viewBox="0 0 400 760" aria-hidden="true">
-      <g clip-path="url(#win)">
-        <rect y="580" width="400" height="180" fill="url(#fadeB)"/>
-        <g fill="none"><path d="M44 760V262C44 170 130 110 200 84C270 110 356 170 356 262V760" stroke="rgba(110,90,70,.08)" stroke-width="14"/><path d="M44 760V262C44 170 130 110 200 84C270 110 356 170 356 262V760" stroke="rgba(110,90,70,.1)" stroke-width="7"/><path d="M44 760V262C44 170 130 110 200 84C270 110 356 170 356 262V760" stroke="rgba(110,90,70,.14)" stroke-width="3"/></g>
-      </g>
-
-      <!-- carved frame -->
-      <path fill-rule="evenodd" fill="url(#stone)" d="M0 0H400V760H0ZM44 760V262C44 170 130 110 200 84C270 110 356 170 356 262V760Z"/>
-      <g fill="none" stroke-linecap="round">
-        <path d="M34 760V260C34 160 124 98 200 70C276 98 366 160 366 260V760" stroke="#ffffff" stroke-width="2.4" transform="translate(-1 -1)"/>
-        <path d="M34 760V260C34 160 124 98 200 70C276 98 366 160 366 260V760" stroke="#ddd2c3" stroke-width="1.2"/>
-        <path d="M39 760V261C39 165 127 104 200 77C273 104 361 165 361 261V760" stroke="#fff" stroke-width="3.2" stroke-dasharray="0 7"/>
-        <path d="M39 760V261C39 165 127 104 200 77C273 104 361 165 361 261V760" stroke="#d8cdbd" stroke-width="3.2" stroke-dasharray="0 7" transform="translate(.6 .8)" opacity=".7"/>
-        <path d="M44 760V262C44 170 130 110 200 84C270 110 356 170 356 262V760" stroke="#e7ddcf" stroke-width="1.5"/>
-        <path d="M200 70V44M192 53H208" stroke="#c9b48a" stroke-width="1.6"/>
-      </g>
-            <rect x="8" y="300" width="24" height="440" fill="url(#jali)" stroke="#e1d7c9"/>
-      <rect x="368" y="300" width="24" height="440" fill="url(#jali)" stroke="#e1d7c9"/>
-
-
-      <g id="heroFlora"></g>
-    </svg>
-    <svg class="lan" viewBox="-30 -2 60 92" style="left:6.12%;top:24.93%;width:18.75%;animation-duration:2.9s;animation-delay:-0s" aria-hidden="true"><use href="#lantern"/></svg>
-    <svg class="lan" viewBox="-30 -2 60 92" style="left:15.40%;top:20.43%;width:13.20%;animation-duration:2.4s;animation-delay:-0.9s" aria-hidden="true"><use href="#lantern"/></svg>
-    <svg class="lan" viewBox="-30 -2 60 92" style="left:75.12%;top:24.93%;width:18.75%;animation-duration:2.7s;animation-delay:-1.4s" aria-hidden="true"><use href="#lantern"/></svg>
-    <svg class="lan" viewBox="-30 -2 60 92" style="left:71.40%;top:20.43%;width:13.20%;animation-duration:2.5s;animation-delay:-0.4s" aria-hidden="true"><use href="#lantern"/></svg>
+    <img class="hero-img" src="img/hero.jpg" width="864" height="1536" alt="A carved ivory arch dressed with white roses, looking across a reflecting pool to a white chapel at sunrise">
+    <div class="walk" aria-hidden="true"><div class="bob"><img src="img/couple.webp" width="520" height="658" alt=""></div></div>
+    <div class="hero-mist" aria-hidden="true"></div>
+    <svg class="lan" viewBox="-30 -2 60 92" style="left:11.00%;top:15.5%;width:13%;animation-duration:2.9s;animation-delay:-0s" aria-hidden="true"><use href="#lantern"/></svg>
+    <svg class="lan" viewBox="-30 -2 60 92" style="left:21.25%;top:9.5%;width:9.5%;animation-duration:2.4s;animation-delay:-0.9s" aria-hidden="true"><use href="#lantern"/></svg>
+    <svg class="lan" viewBox="-30 -2 60 92" style="left:76.00%;top:15.5%;width:13%;animation-duration:2.7s;animation-delay:-1.4s" aria-hidden="true"><use href="#lantern"/></svg>
+    <svg class="lan" viewBox="-30 -2 60 92" style="left:69.25%;top:9.5%;width:9.5%;animation-duration:2.5s;animation-delay:-0.4s" aria-hidden="true"><use href="#lantern"/></svg>
     <div class="hero-text">
       <div class="w">Welcome to the</div>
       <div class="c" data-k="ceremony"></div>
@@ -644,7 +589,7 @@ body.locked .hero{transform:scale(1.04)}
       <div class="place rv"><p class="lab">Reception · <span data-k="receptionTime"></span></p><p class="venue"><span data-k="receptionVenue"></span><br><span data-k="receptionAddr"></span></p>
         <a class="btn" id="mapBtn2" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Open in Maps</a></div>
     </div>
-    <div class="venue-art rv"><svg viewBox="0 0 400 260" id="venueSvg" role="img" aria-label="Illustration of the venue at dusk, framed by palm trees"></svg></div>
+    <div class="venue-art rv"><img src="img/venue.jpg" width="1200" height="800" loading="lazy" alt="The reception venue at dusk, lit warmly behind palm trees and a reflecting pool"></div>
   </section>
 
   <!-- Closing -->
@@ -794,30 +739,6 @@ function sprig(x, y, s, rot, flip = 1) {
   return p + '<circle cx="0" cy="4" r="1.4"/></g>';
 }
 
-/* ---------- envelope embossing ---------- */
-(() => {
-  const P2 = { rose: 'fill="#ebe9e6"', leaf: 'fill="#ebe9e6"', bud: 'fill="#ebe9e6"', gyp: 'fill="#ebe9e6"' };
-  const bead = d => `<path d="${d}" fill="none" stroke="#ebe9e6" stroke-width="3" stroke-dasharray="0 8" stroke-linecap="round"/>`;
-  const dots = (n, x0, x1, y0, y1, seed) => { let r = seed, o = ''; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
-    for (let i = 0; i < n; i++) o += `<use href="#gyp" ${P2.gyp} transform="translate(${(x0 + rnd() * (x1 - x0)).toFixed(0)} ${(y0 + rnd() * (y1 - y0)).toFixed(0)}) rotate(${(rnd() * 60 - 30).toFixed(0)}) scale(${(.5 + rnd() * .4).toFixed(2)})"/>`; return o; };
-  const body =
-    sprig(26, 330, 1.35, 6) + sprig(20, 560, 1.45, -3) + sprig(34, 770, 1.15, 8) + sprig(70, 470, .9, 14) + sprig(64, 690, .8, -10) +
-    sprig(404, 330, 1.35, -6, -1) + sprig(410, 560, 1.45, 3, -1) + sprig(396, 770, 1.15, -8, -1) + sprig(360, 470, .9, -14, -1) + sprig(366, 690, .8, 10, -1) +
-    cluster('spray', 92, 610, .75, 1, P2) + cluster('spray', 338, 610, .75, -1, P2) +
-    cluster('medallion', 215, 800, 1.65, 1, P2) + cluster('spray', 100, 872, 1.05, 1, P2) + cluster('spray', 330, 872, 1.05, -1, P2) +
-    cluster('corner', 18, 880, .55, 1, P2) + cluster('corner', 412, 880, .55, -1, P2) +
-    dots(9, 60, 170, 380, 760, 7) + dots(9, 260, 370, 380, 760, 11) + dots(5, 130, 300, 640, 720, 3) +
-    '';
-  const flap =
-    cluster('medallion', 215, 118, 1.5, 1, P2) + cluster('spray', 215, 262, 1, 1, P2) + cluster('spray', 215, 360, .7, 1, P2) +
-    sprig(70, 40, 1, 55) + sprig(360, 40, 1, -55, -1) + cluster('spray', 110, 150, .6, 1, P2) + cluster('spray', 320, 150, .6, -1, P2) +
-    dots(8, 120, 310, 190, 430, 5) + bead('M30 0L215 520L400 0');
-  const wrap = s => `<g class="emb" fill="#ebe9e6" stroke="rgba(120,112,104,.3)" stroke-width=".9">${s}</g>`;
-  const glow = s => `<g fill="#ffffff" stroke="#ffffff" stroke-width="1.2">${s}</g>`;
-  $('#embBody').innerHTML = wrap(body); $('#glBody').innerHTML = glow(body);
-  $('#embFlap').innerHTML = wrap(flap); $('#glFlap').innerHTML = glow(flap);
-})();
-
 /* ---------- wax seal ---------- */
 (() => {
   let d = '';
@@ -835,12 +756,7 @@ function sprig(x, y, s, rot, flip = 1) {
   $('#sealWreath').innerHTML = w + '<circle r="30" fill="none"/>';
 })();
 
-/* ---------- hero florals ---------- */
-$('#heroFlora').innerHTML =
-  cluster('corner', 26, 46, .82) + cluster('corner', 374, 46, .82, -1) +
-  cluster('spray', 60, 300, .7) + cluster('spray', 340, 300, .7, -1) +
-  cluster('corner', 22, 690, .95) + cluster('corner', 378, 690, .95, -1) +
-  cluster('spray', 120, 744, .9) + cluster('spray', 280, 744, .9, -1);
+/* ---------- florals ---------- */
 $$('.flora-corner').forEach(g => g.innerHTML = cluster('corner', 30, 20, 1));
 
 /* ---------- timeline ---------- */
@@ -889,60 +805,14 @@ const ICONS = {
     ${star(70, 14, 1.3)}${star(56, 8, .6)}${star(86, 6, .7)}<path d="M64 22L60 16M76 22L80 16M70 24V18" stroke-width=".8"/>
     <path d="M58 98C64 92 76 92 82 98" fill="none"/>${goldRose(70, 98, .14)}${base()}`
 };
-const icon = k => `<svg viewBox="0 0 140 118" aria-hidden="true"><g fill="none" stroke="#b08f55" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">${ICONS[k] || ICONS.gate}</g></svg>`;
+const PICS = { gate: 'gate', church: 'church', bride: 'couple', couple: 'couple', cloche: 'cloche', cake: 'cake', toast: 'toast' };
+const icon = k => `<img src="img/t-${PICS[k] || 'gate'}.webp" width="480" height="480" loading="lazy" alt="">`;
 const node = `<svg viewBox="-14 -14 28 28" aria-hidden="true"><circle r="12.5" fill="url(#medal)" opacity=".35"/><circle r="9" fill="#fffaf0" stroke="#b08f55" stroke-width=".8"/>${goldRose(0, 0, .17).replace('stroke-width="3"', 'stroke-width="4"')}</svg>`;
 const tl = $('#tl');
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 tl.insertAdjacentHTML('beforeend', CONFIG.timeline.map(t =>
   `<div class="tl-item rv"><div class="tl-art">${icon(t.icon)}</div><span class="tl-node">${node}</span><div class="tl-text"><div class="tl-time">${esc(t.time)}</div><div class="tl-label">${esc(t.label)}</div></div></div>`).join('') +
   `<svg class="tl-end" viewBox="0 0 30 44" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M15 0V14"/><g transform="translate(15 22)"><circle r="6"/><path d="M-2 0a2 2 0 1 1 2 2a3.6 3.6 0 1 1-3.6-3.6"/><path d="M5 3C9 2 12 4 13 7C9 8 6 6 5 3ZM-5 3C-9 2-12 4-13 7C-9 8-6 6-5 3Z"/></g><path d="M15 28V36M12 36L15 42L18 36Z"/></g></svg>`);
-
-/* ---------- venue illustration ---------- */
-(() => {
-  const frond = (tx, ty, deg, L) => {
-    const a = deg * Math.PI / 180, c = Math.cos(a), s = Math.sin(a);
-    const ex = tx + c * L, ey = ty + s * L + L * .42, mx = tx + c * L * .55, my = ty + s * L * .55 - L * .1, w = L * .13, nx = -s, ny = c;
-    return `M${tx} ${ty}Q${(mx + nx * w).toFixed(1)} ${(my + ny * w).toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}Q${(mx - nx * w).toFixed(1)} ${(my - ny * w).toFixed(1)} ${tx} ${ty}Z`;
-  };
-  const palm = (x, base, h, lean, col, L) => {
-    const tx = x + lean, ty = base - h;
-    let g = `<path d="M${x} ${base}Q${x + lean * .3} ${base - h * .5} ${tx} ${ty}" stroke="${col}" stroke-width="${L / 9}" fill="none" stroke-linecap="round"/><g fill="${col}">`;
-    for (const d of [-172, -145, -118, -92, -66, -40, -10, 160, 20]) g += `<path d="${frond(tx, ty, d, L * (d > 100 || d === 20 ? .8 : 1))}"/>`;
-    return g + '</g>';
-  };
-  let arches = '';
-  for (let i = 0; i < 9; i++) { const x = 80 + i * 27.5; arches += `<path d="M${x} 214V186C${x} 178 ${x + 9} 172 ${x + 9} 172C${x + 9} 172 ${x + 18} 178 ${x + 18} 186V214Z" fill="url(#lit)"/>`; }
-  let wins = '';
-  for (let i = 0; i < 9; i++) { const x = 84 + i * 27.5; wins += `<path d="M${x} 156V142C${x} 138 ${x + 5} 135 ${x + 5} 135C${x + 5} 135 ${x + 10} 138 ${x + 10} 142V156Z" fill="url(#lit)" opacity=".9"/>`; }
-  let merl = 'M66 118';
-  for (let x = 66; x < 334; x += 8) merl += `h4v-5h4v5`;
-  $('#venueSvg').innerHTML = `
-    <defs>
-      <linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9c4d2"/><stop offset=".55" stop-color="#e3d6cb"/><stop offset="1" stop-color="#f2d4b0"/></linearGradient>
-      <radialGradient id="lit" cx=".5" cy=".7" r=".8"><stop offset="0" stop-color="#fff1c9"/><stop offset=".6" stop-color="#f3c57c"/><stop offset="1" stop-color="#c88f4b"/></radialGradient>
-      <linearGradient id="wall" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e2c9a6"/><stop offset=".6" stop-color="#d4b68e"/><stop offset="1" stop-color="#bf9f78"/></linearGradient>
-      <linearGradient id="topFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf9f5"/><stop offset="1" stop-color="#fbf9f5" stop-opacity="0"/></linearGradient>
-      <linearGradient id="pool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fb0bd"/><stop offset="1" stop-color="#d7cdbf"/></linearGradient>
-    </defs>
-    <rect width="400" height="260" fill="url(#dusk)"/>
-    <circle cx="200" cy="200" r="120" fill="#fff4dc" opacity=".35"/>
-    ${palm(140, 150, 70, -6, '#8c9488', 42)}${palm(262, 150, 76, 8, '#8c9488', 44)}
-    <rect x="66" y="118" width="268" height="100" fill="url(#wall)"/>
-    <path d="${merl}" fill="#d8bc95"/>
-    <rect x="66" y="160" width="268" height="5" fill="#c9a77d"/>
-    <rect x="156" y="70" width="88" height="48" fill="url(#wall)"/>
-    <path d="M156 70h88v-6h-88z" fill="#c9a77d"/>
-    <path d="M186 118V92C186 84 200 78 200 78C200 78 214 84 214 92V118Z" fill="url(#lit)"/>
-    <rect x="96" y="84" width="24" height="34" fill="#dcc29e"/><rect x="280" y="84" width="24" height="34" fill="#cfb38c"/>
-    <path d="M102 112V98a6 6 0 0 1 12 0v14zM286 112V98a6 6 0 0 1 12 0v14z" fill="url(#lit)" opacity=".85"/>
-    ${wins}${arches}
-    <rect y="216" width="400" height="44" fill="#6b765f"/>
-    <rect x="110" y="224" width="180" height="22" rx="2" fill="url(#pool)"/>
-    <g fill="#ffe3a8">${[90, 130, 170, 230, 270, 310].map(x => `<circle cx="${x}" cy="221" r="1.6"/>`).join('')}</g>
-    <path d="M110 230H290M130 238H270" stroke="#fff3d8" stroke-width=".8" opacity=".6"/>
-    ${palm(46, 260, 170, 10, '#3f4a3c', 66)}${palm(88, 260, 120, -4, '#465243', 50)}${palm(352, 260, 160, -10, '#3f4a3c', 64)}${palm(318, 260, 110, 4, '#465243', 46)}
-    <rect width="400" height="70" fill="url(#topFade)"/>`;
-})();
 
 /* ---------- links ---------- */
 (() => {
@@ -1246,6 +1116,7 @@ function armReveals() {
     if (!reduced) [[10, 40], [88, 44], [14, 58], [86, 60], [8, 72], [92, 74], [18, 84], [82, 86], [30, 66], [70, 66]].forEach(([x, y], i) => spark(x, y, .15 + i * .08));
     await wait(1500);
     // 4. crossfade into the invitation
+    const wk = $('.walk'); if (wk) { wk.style.animation = 'none'; void wk.offsetWidth; wk.style.animation = ''; }
     env.classList.add('gone'); document.body.classList.remove('locked');
     window.scrollTo(0, 0); armReveals(); Smooth.resume();
     setTimeout(() => env.remove(), 1000);
