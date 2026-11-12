@@ -51,17 +51,18 @@ p{margin:0}
 /* ---------- envelope ---------- */
 .env{position:fixed;inset:0;z-index:50;display:flex;justify-content:center;background:var(--outside);transition:opacity .8s ease}
 .env.gone{opacity:0;pointer-events:none}
-.env-card{position:relative;width:100%;max-width:var(--col);height:100%;overflow:hidden;background:radial-gradient(75% 45% at 50% 56%,#f8f1e6,#e6dacb 50%,#cfc2b2 85%,#c2b4a3);transition:transform .9s cubic-bezier(.3,.1,.2,1)}
+.env-card{position:relative;width:100%;max-width:var(--col);height:100%;overflow:hidden;background:radial-gradient(60% 34% at 50% 53%,#bfa989,#d3c2a6 45%,#e6dbc8 80%,#ece3d3);transition:transform .9s cubic-bezier(.3,.1,.2,1)}
 .env.gone .env-card{transform:scale(1.04)}
-.inlit{position:absolute;inset:0;opacity:0;background:radial-gradient(55% 38% at 50% 55%,rgba(255,252,244,.98),rgba(255,244,226,.6) 50%,rgba(255,238,215,.15) 100%)}
+.inlit{position:absolute;inset:0;opacity:0;background:radial-gradient(13% 8% at 50% 54%,#fff 0,#fbfdff 55%,rgba(246,250,255,.85) 80%,rgba(255,250,240,0) 100%),radial-gradient(34% 20% at 50% 54%,rgba(255,244,222,.75),rgba(255,240,215,0))}
 .fw{position:absolute;inset:0}
-.fw.body{filter:drop-shadow(0 -1.5px 2.5px rgba(70,55,40,.28))}
-.fw.top{perspective:1800px;perspective-origin:50% 50%;z-index:4;filter:drop-shadow(0 1.2px 1.2px rgba(70,66,90,.2)) drop-shadow(0 3px 7px rgba(70,66,90,.08))}
+.fw.body{filter:drop-shadow(0 -1px 2px rgba(70,55,40,.3)) drop-shadow(0 0 5px rgba(70,55,40,.12))}
+.fw.top{perspective:6000px;perspective-origin:50% 50%;z-index:4;filter:drop-shadow(0 1.2px 1.2px rgba(70,62,55,.22)) drop-shadow(0 3px 7px rgba(70,62,55,.1))}
 .surf{position:absolute;inset:0}
 .surf svg{position:absolute;inset:0;width:100%;height:100%}
-.surf.body{clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%);background-color:#eceaef;background-image:var(--tex,none),linear-gradient(180deg,#efeef2,#e8e6ec);background-blend-mode:multiply}
-.surf.flap{clip-path:polygon(0 0,100% 0,50% 62%);background-color:#f2f1f4;background-image:var(--tex,none),linear-gradient(180deg,#f5f4f7,#eceaef);background-blend-mode:multiply;transform-origin:50% 0;will-change:transform}
-.emb{filter:drop-shadow(-.7px -.7px .3px rgba(255,255,255,.98)) drop-shadow(.8px 1px .7px rgba(92,88,115,.34))}
+.surf.body{clip-path:polygon(0 0,43.6% 53.3%,43.6% 61%,45.9% 61%,50% 57.5%,54.1% 61%,56.4% 61%,56.4% 53.3%,100% 0,100% 100%,0 100%);background-color:#e9e7e4;background-image:var(--tex,none),linear-gradient(180deg,#eeecea,#e5e2df);background-blend-mode:multiply}
+.surf.body svg.crease{mix-blend-mode:normal}
+.surf.flap{clip-path:polygon(0 0,100% 0,50% 62%);background-color:#efedea;background-image:var(--tex,none),linear-gradient(180deg,#f4f2f0,#e9e7e4);background-blend-mode:multiply;transform-origin:50% 0;will-change:transform}
+.emb{filter:drop-shadow(-.7px -.7px .3px rgba(255,255,255,.98)) drop-shadow(.8px 1px .7px rgba(100,92,86,.34))}
 @property --gr{syntax:'<percentage>';inherits:false;initial-value:0%}
 .glint{opacity:0;pointer-events:none;--gr:0%;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 5px rgba(255,255,255,.95));
   -webkit-mask:radial-gradient(circle at 50% 62%,rgba(0,0,0,.45) 0,rgba(0,0,0,.45) calc(var(--gr) - 26%),#000 calc(var(--gr) - 12%),transparent var(--gr));
@@ -70,21 +71,23 @@ p{margin:0}
 @keyframes glint{0%{opacity:1;--gr:4%}62%{opacity:1;--gr:130%}78%{opacity:.8;--gr:130%}100%{opacity:0;--gr:130%}}
 .sheen{position:absolute;inset:0;z-index:5;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.5) 49%,rgba(255,255,255,0) 58%) no-repeat;background-size:260% 100%;background-position:130% 0;mix-blend-mode:soft-light;animation:sheen 6s ease-in-out 1.2s infinite}
 @keyframes sheen{0%{background-position:130% 0}50%,100%{background-position:-60% 0}}
-.core,.bloom,.rays,.fan{position:absolute;pointer-events:none;opacity:0;mix-blend-mode:screen}
-.core{left:50%;top:55%;width:32%;height:16%;transform:translate(-50%,-50%);z-index:6;border-radius:14%;background:radial-gradient(closest-side,#fff 0,#fffdf8 62%,rgba(255,250,238,.6) 82%,rgba(255,248,230,0));filter:blur(4px)}
-.bloom{left:50%;top:55%;width:150%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:6;background:radial-gradient(closest-side,rgba(255,252,242,.9),rgba(255,244,222,.45) 22%,rgba(255,238,210,.12) 45%,rgba(255,236,205,0) 70%)}
-.rays{left:50%;top:55%;width:300%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:6;
+.core,.bloom,.rays,.fan,.sun{position:absolute;pointer-events:none;opacity:0;mix-blend-mode:screen;z-index:3}
+.warm{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;mix-blend-mode:multiply;background:radial-gradient(46% 26% at 50% 55%,rgba(205,176,128,.85),rgba(214,190,150,.4) 50%,rgba(225,208,180,0) 100%)}
+.core{left:50%;top:54%;width:17%;height:10%;transform:translate(-50%,-50%);border-radius:18%;background:radial-gradient(closest-side,#fff 0,#fafdff 60%,rgba(250,252,255,0));filter:blur(5px)}
+.bloom{left:50%;top:55%;width:95%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(255,253,246,.85),rgba(255,246,228,.4) 26%,rgba(255,240,214,.1) 52%,rgba(255,236,205,0) 75%)}
+.sun{left:50%;top:57.5%;width:30%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,#fff 0,rgba(255,255,255,.9) 28%,rgba(255,248,232,.45) 55%,rgba(255,244,222,0) 100%)}
+.rays{left:50%;top:56%;width:300%;aspect-ratio:1;transform:translate(-50%,-50%);
   background:
-   repeating-conic-gradient(from 2deg,rgba(255,248,230,0) 0deg 4deg,rgba(255,248,230,.5) 4.6deg 5.2deg,rgba(255,248,230,0) 6deg 11deg),
-   repeating-conic-gradient(from 7deg,rgba(255,240,212,0) 0deg 8deg,rgba(255,240,212,.32) 9deg 10.5deg,rgba(255,240,212,0) 11.5deg 19deg);
-  -webkit-mask:radial-gradient(circle,#000 1%,rgba(0,0,0,.55) 9%,rgba(0,0,0,.18) 20%,transparent 33%);mask:radial-gradient(circle,#000 1%,rgba(0,0,0,.55) 9%,rgba(0,0,0,.18) 20%,transparent 33%)}
+   repeating-conic-gradient(from 1deg,rgba(255,250,236,0) 0deg 3.2deg,rgba(255,250,236,.6) 3.5deg 3.9deg,rgba(255,250,236,0) 4.2deg 7deg),
+   repeating-conic-gradient(from 4deg,rgba(255,244,222,0) 0deg 6deg,rgba(255,244,222,.38) 6.6deg 7.6deg,rgba(255,244,222,0) 8.4deg 13deg);
+  -webkit-mask:radial-gradient(circle,#000 1%,rgba(0,0,0,.6) 7%,rgba(0,0,0,.2) 16%,transparent 27%);mask:radial-gradient(circle,#000 1%,rgba(0,0,0,.6) 7%,rgba(0,0,0,.2) 16%,transparent 27%)}
 .rays.on{animation:drift 14s ease-in-out infinite alternate}
-@keyframes drift{to{transform:translate(-50%,-50%) rotate(6deg)}}
-.fan{left:-20%;right:-20%;top:55%;height:48%;z-index:6;
-  background:repeating-conic-gradient(from 126deg at 50% 0%,rgba(255,246,226,0) 0deg 3deg,rgba(255,246,226,.55) 3.6deg 4.6deg,rgba(255,246,226,0) 5.4deg 8deg);
-  -webkit-mask:linear-gradient(180deg,#000,rgba(0,0,0,.35) 45%,transparent 90%),conic-gradient(from 120deg at 50% 0%,#000 0 120deg,transparent 120deg);-webkit-mask-composite:source-in;
-  mask:linear-gradient(180deg,#000,rgba(0,0,0,.35) 45%,transparent 90%),conic-gradient(from 120deg at 50% 0%,#000 0 120deg,transparent 120deg);mask-composite:intersect}
-.seal{position:absolute;left:50%;top:62%;width:27%;max-width:118px;aspect-ratio:1;transform:translate(-50%,-50%);z-index:8;cursor:pointer;border:0;padding:0;background:none;-webkit-tap-highlight-color:transparent;filter:drop-shadow(0 4px 5px rgba(60,55,75,.26)) drop-shadow(0 1px 1px rgba(60,55,75,.25))}
+@keyframes drift{to{transform:translate(-50%,-50%) rotate(5deg)}}
+.fan{left:-20%;right:-20%;top:57.5%;height:40%;
+  background:repeating-conic-gradient(from 122deg at 50% 0%,rgba(255,248,230,0) 0deg 2.4deg,rgba(255,248,230,.6) 2.8deg 3.5deg,rgba(255,248,230,0) 4deg 6deg);
+  -webkit-mask:linear-gradient(180deg,#000,rgba(0,0,0,.4) 40%,transparent 85%),conic-gradient(from 122deg at 50% 0%,#000 0 116deg,transparent 116deg);-webkit-mask-composite:source-in;
+  mask:linear-gradient(180deg,#000,rgba(0,0,0,.4) 40%,transparent 85%),conic-gradient(from 122deg at 50% 0%,#000 0 116deg,transparent 116deg);mask-composite:intersect}
+.seal{position:absolute;left:50%;top:60.5%;width:27%;max-width:118px;aspect-ratio:1;transform:translate(-50%,-50%);z-index:8;cursor:pointer;border:0;padding:0;background:none;-webkit-tap-highlight-color:transparent;filter:drop-shadow(0 4px 5px rgba(60,55,75,.26)) drop-shadow(0 1px 1px rgba(60,55,75,.25))}
 .seal svg{width:100%;height:100%;display:block;overflow:visible}
 .seal::before{content:"";position:absolute;inset:-55%;border-radius:50%;z-index:-1;pointer-events:none;opacity:0;transform:scale(.5);background:radial-gradient(closest-side,rgba(255,255,255,.95) 0,rgba(255,255,255,.75) 30%,rgba(255,252,240,.3) 58%,rgba(255,255,255,0) 100%)}
 .seal.shined::before{animation:halo 2.4s ease-out .7s forwards}
@@ -306,10 +309,10 @@ body.locked .hero{transform:scale(1.04)}
       <stop offset="0" stop-color="#9c7a3e"/><stop offset=".45" stop-color="#e3cb8f"/><stop offset="1" stop-color="#a7843f"/>
     </linearGradient>
     <radialGradient id="wax" cx=".4" cy=".35" r=".7">
-      <stop offset="0" stop-color="#f6f5f8"/><stop offset=".55" stop-color="#e4e2e9"/><stop offset="1" stop-color="#c8c5d0"/>
+      <stop offset="0" stop-color="#f7f5f3"/><stop offset=".55" stop-color="#e6e3df"/><stop offset="1" stop-color="#cbc6c0"/>
     </radialGradient>
     <radialGradient id="wax2" cx=".6" cy=".65" r=".7">
-      <stop offset="0" stop-color="#ebe9ef"/><stop offset="1" stop-color="#d9d6df"/>
+      <stop offset="0" stop-color="#eeebe8"/><stop offset="1" stop-color="#dcd8d2"/>
     </radialGradient>
     <radialGradient id="lglass" cx=".5" cy=".5" r=".6">
       <stop offset="0" stop-color="#fffbe8"/><stop offset=".5" stop-color="#f3d993"/><stop offset="1" stop-color="#b98f48"/>
@@ -358,6 +361,7 @@ body.locked .hero{transform:scale(1.04)}
   <div class="env-card" id="envCard">
     <div class="inlit" id="inlit"></div>
     <div class="fw body"><div class="surf body">
+      <svg class="crease" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,100 50,57.5 100,100" fill="rgba(255,255,255,.2)"/><path d="M0 100L50 57.5L100 100" fill="none" stroke="rgba(90,80,70,.28)" stroke-width="1.6" vector-effect="non-scaling-stroke" transform="translate(0 -.12)"/><path d="M0 100L50 57.5L100 100" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="1.2" vector-effect="non-scaling-stroke" transform="translate(0 .1)"/></svg>
       <svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" id="embBody"></svg>
       <svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" class="glint" id="glBody"></svg>
     </div></div>
@@ -366,9 +370,11 @@ body.locked .hero{transform:scale(1.04)}
       <svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" class="glint" id="glFlap"></svg>
     </div></div>
     <div class="sheen" id="sheen"></div>
+    <div class="warm" id="warm"></div>
     <div class="bloom" id="bloom"></div>
     <div class="fan" id="fan"></div>
     <div class="rays" id="rays"></div>
+    <div class="sun" id="sun"></div>
     <div class="core" id="core"></div>
     <button class="seal idle" id="seal" aria-label="Open the invitation">
       <svg viewBox="-60 -60 120 120" aria-hidden="true">
@@ -790,8 +796,8 @@ function sprig(x, y, s, rot, flip = 1) {
 
 /* ---------- envelope embossing ---------- */
 (() => {
-  const P2 = { rose: 'fill="#eeedf1"', leaf: 'fill="#eeedf1"', bud: 'fill="#eeedf1"', gyp: 'fill="#eeedf1"' };
-  const bead = d => `<path d="${d}" fill="none" stroke="#eeedf1" stroke-width="3" stroke-dasharray="0 8" stroke-linecap="round"/>`;
+  const P2 = { rose: 'fill="#ebe9e6"', leaf: 'fill="#ebe9e6"', bud: 'fill="#ebe9e6"', gyp: 'fill="#ebe9e6"' };
+  const bead = d => `<path d="${d}" fill="none" stroke="#ebe9e6" stroke-width="3" stroke-dasharray="0 8" stroke-linecap="round"/>`;
   const dots = (n, x0, x1, y0, y1, seed) => { let r = seed, o = ''; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
     for (let i = 0; i < n; i++) o += `<use href="#gyp" ${P2.gyp} transform="translate(${(x0 + rnd() * (x1 - x0)).toFixed(0)} ${(y0 + rnd() * (y1 - y0)).toFixed(0)}) rotate(${(rnd() * 60 - 30).toFixed(0)}) scale(${(.5 + rnd() * .4).toFixed(2)})"/>`; return o; };
   const body =
@@ -801,15 +807,14 @@ function sprig(x, y, s, rot, flip = 1) {
     cluster('medallion', 215, 800, 1.65, 1, P2) + cluster('spray', 100, 872, 1.05, 1, P2) + cluster('spray', 330, 872, 1.05, -1, P2) +
     cluster('corner', 18, 880, .55, 1, P2) + cluster('corner', 412, 880, .55, -1, P2) +
     dots(9, 60, 170, 380, 760, 7) + dots(9, 260, 370, 380, 760, 11) + dots(5, 130, 300, 640, 720, 3) +
-    bead('M8 0L215 524L422 0') ;
+    '';
   const flap =
     cluster('medallion', 215, 118, 1.5, 1, P2) + cluster('spray', 215, 262, 1, 1, P2) + cluster('spray', 215, 360, .7, 1, P2) +
     sprig(70, 40, 1, 55) + sprig(360, 40, 1, -55, -1) + cluster('spray', 110, 150, .6, 1, P2) + cluster('spray', 320, 150, .6, -1, P2) +
     dots(8, 120, 310, 190, 430, 5) + bead('M30 0L215 520L400 0');
-  const wrap = s => `<g class="emb" fill="#eeedf1" stroke="rgba(120,115,140,.3)" stroke-width=".9">${s}</g>`;
+  const wrap = s => `<g class="emb" fill="#ebe9e6" stroke="rgba(120,112,104,.3)" stroke-width=".9">${s}</g>`;
   const glow = s => `<g fill="#ffffff" stroke="#ffffff" stroke-width="1.2">${s}</g>`;
-  const crease = '<g fill="none" stroke-linecap="round"><path d="M0 900L215 513L430 900" stroke="rgba(255,255,255,.9)" stroke-width="1.4" transform="translate(-.6 -.6)"/><path d="M0 900L215 513L430 900" stroke="rgba(95,90,115,.16)" stroke-width="1"/></g>';
-  $('#embBody').innerHTML = crease + wrap(body); $('#glBody').innerHTML = glow(body);
+  $('#embBody').innerHTML = wrap(body); $('#glBody').innerHTML = glow(body);
   $('#embFlap').innerHTML = wrap(flap); $('#glFlap').innerHTML = glow(flap);
 })();
 
@@ -1204,17 +1209,17 @@ function armReveals() {
   const wait = ms => new Promise(r => setTimeout(r, reduced ? 0 : ms));
   function lift() {
     return new Promise(done => {
-      const W = card.clientWidth, H = card.clientHeight, h = .62 * H, P = 1800, cy = H / 2;
+      const W = card.clientWidth, H = card.clientHeight, h = .62 * H, P = 6000, cy = H / 2;
       const proj = th => { const y = h * Math.cos(th), z = h * Math.sin(th), k = P / (P - z); return [cy + (y - cy) * k, k]; };
-      let thMax = 0; for (let d = 0; d <= 85; d += .5) { thMax = d * Math.PI / 180; if (proj(thMax)[0] <= H * .34) break; }
-      const core = $('#core'), rays = $('#rays'), bloom = $('#bloom'), fan = $('#fan'), inlit = $('#inlit');
+      let thMax = 0; for (let d = 0; d <= 85; d += .5) { thMax = d * Math.PI / 180; if (proj(thMax)[0] <= H * .445) break; }
+      const core = $('#core'), rays = $('#rays'), bloom = $('#bloom'), fan = $('#fan'), inlit = $('#inlit'), warm = $('#warm'), sun = $('#sun');
       const T0 = performance.now(), DUR = reduced ? 1 : 1700;
       const frame = now => {
         const t = Math.min(1, (now - T0) / DUR), e = ease(t), th = thMax * e, [y, k] = proj(th);
         flap.style.transform = `rotateX(${th}rad)`;
-        seal.style.top = y + 'px'; seal.style.transform = `translate(-50%,-50%) scale(${k})`;
+        seal.style.top = (y - .015 * H * k) + 'px'; seal.style.transform = `translate(-50%,-50%) scale(${k})`;
         const lt = Math.min(1, Math.max(0, (t - .22) / .6));
-        inlit.style.opacity = lt; core.style.opacity = lt; bloom.style.opacity = lt * .85;
+        inlit.style.opacity = lt; core.style.opacity = lt; bloom.style.opacity = lt * .7; warm.style.opacity = lt; sun.style.opacity = lt * .95;
         const rt = Math.min(1, Math.max(0, (t - .4) / .6)); rays.style.opacity = rt; fan.style.opacity = rt * .9;
         if (t < 1) requestAnimationFrame(frame); else { rays.classList.add('on'); done(); }
       };
