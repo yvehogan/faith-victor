@@ -87,11 +87,14 @@ p{margin:0}
 .seal{position:absolute;left:50%;top:62%;width:27%;max-width:118px;aspect-ratio:1;transform:translate(-50%,-50%);z-index:8;cursor:pointer;border:0;padding:0;background:none;-webkit-tap-highlight-color:transparent;filter:drop-shadow(0 4px 5px rgba(60,55,75,.26)) drop-shadow(0 1px 1px rgba(60,55,75,.25))}
 .seal svg{width:100%;height:100%;display:block;overflow:visible}
 .seal::before{content:"";position:absolute;inset:-55%;border-radius:50%;z-index:-1;pointer-events:none;opacity:0;transform:scale(.5);background:radial-gradient(closest-side,rgba(255,255,255,.95) 0,rgba(255,255,255,.75) 30%,rgba(255,252,240,.3) 58%,rgba(255,255,255,0) 100%)}
-.seal.shined::before{animation:halo 3s ease-out forwards}
-@keyframes halo{0%{opacity:0;transform:scale(.5)}28%{opacity:1;transform:scale(1)}60%{opacity:.85;transform:scale(1.08)}100%{opacity:0;transform:scale(1.25)}}
+.seal.shined::before{animation:halo 2.4s ease-out .7s forwards}
+@keyframes halo{0%{opacity:0;transform:scale(.5)}35%{opacity:.6;transform:scale(.95)}65%{opacity:.5;transform:scale(1.05)}100%{opacity:0;transform:scale(1.2)}}
+.seal .orbit{opacity:0;transform:rotate(-100deg);filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 9px rgba(255,255,255,.9))}
+.seal.shined .orbit{animation:orbit 1.45s cubic-bezier(.45,.05,.4,1) forwards}
+@keyframes orbit{0%{opacity:0;transform:rotate(-100deg)}10%{opacity:1}82%{opacity:1}100%{opacity:0;transform:rotate(360deg)}}
 .seal .sglow{opacity:0;mix-blend-mode:screen}
-.seal.shined .sglow{animation:sglow 3s ease-in-out forwards}
-@keyframes sglow{0%{opacity:0}25%{opacity:1}60%{opacity:.9}100%{opacity:0}}
+.seal.shined .sglow{animation:sglow 2.3s ease-in-out .7s forwards}
+@keyframes sglow{0%{opacity:0}30%{opacity:1}60%{opacity:.9}100%{opacity:0}}
 .seal .shine{transform:translateX(-130px);transition:transform 1s cubic-bezier(.4,0,.3,1)}
 .seal.shined .shine{transform:translateX(130px)}
 .seal:focus-visible{outline:2px solid #b8b3c4;outline-offset:6px;border-radius:50%}
@@ -116,11 +119,17 @@ p{margin:0}
 .music .off{display:none}.music:not(.playing) .on{display:none}.music:not(.playing) .off{display:block}
 
 /* ---------- hero ---------- */
-.hero{position:relative;container-type:inline-size;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.hero{position:relative;container-type:inline-size;overflow:hidden;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.hero-front{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.walk{position:absolute;left:30%;top:65.79%;width:67.5%;aspect-ratio:1;transform-origin:29.6% -8.1%;animation:walk 20s linear infinite;will-change:transform,opacity;pointer-events:none}
+.walk svg{display:block;width:100%;height:100%;overflow:visible}
+.bob{transform-origin:35% 100%;animation:bob2 1.05s ease-in-out infinite alternate;will-change:transform}
+@keyframes walk{0%{opacity:0;transform:scale(1.2)}5%{opacity:1}90%{opacity:1}100%{opacity:0;transform:scale(.7)}}
+@keyframes bob2{from{transform:translateY(0) rotate(-.7deg)}to{transform:translateY(-1.1%) rotate(.7deg)}}
 body.locked .hero{transform:scale(1.04)}
 .hero>svg{display:block;width:100%;height:auto}
 .lan{position:absolute;height:auto;transform-origin:50% 2.2%;animation:swing 5s ease-in-out infinite alternate;will-change:transform;pointer-events:none}
-@keyframes swing{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+@keyframes swing{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
 .hero-text{position:absolute;left:18%;right:18%;top:24.6%;text-align:center;color:var(--ink)}
 .hero-text .w{font-family:var(--serif);font-size:4.1cqw;letter-spacing:.02em;color:#6e6066;line-height:1.2}
 .hero-text .c{font-family:var(--script);font-size:7cqw;white-space:nowrap;line-height:1.15;color:#6e6066}
@@ -278,6 +287,7 @@ body.locked .hero{transform:scale(1.04)}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .rv.pre{opacity:1;transform:none}
+  .walk,.bob,.lan{animation:none!important}
 }
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -296,10 +306,10 @@ body.locked .hero{transform:scale(1.04)}
       <stop offset="0" stop-color="#9c7a3e"/><stop offset=".45" stop-color="#e3cb8f"/><stop offset="1" stop-color="#a7843f"/>
     </linearGradient>
     <radialGradient id="wax" cx=".4" cy=".35" r=".7">
-      <stop offset="0" stop-color="#fdfcfd"/><stop offset=".55" stop-color="#efedf1"/><stop offset="1" stop-color="#d6d3dc"/>
+      <stop offset="0" stop-color="#f6f5f8"/><stop offset=".55" stop-color="#e4e2e9"/><stop offset="1" stop-color="#c8c5d0"/>
     </radialGradient>
     <radialGradient id="wax2" cx=".6" cy=".65" r=".7">
-      <stop offset="0" stop-color="#f5f4f7"/><stop offset="1" stop-color="#e2dfe7"/>
+      <stop offset="0" stop-color="#ebe9ef"/><stop offset="1" stop-color="#d9d6df"/>
     </radialGradient>
     <radialGradient id="lglass" cx=".5" cy=".5" r=".6">
       <stop offset="0" stop-color="#fffbe8"/><stop offset=".5" stop-color="#f3d993"/><stop offset="1" stop-color="#b98f48"/>
@@ -374,6 +384,7 @@ body.locked .hero{transform:scale(1.04)}
         <g id="sealWreath" class="emb" fill="#efedf0" stroke="rgba(130,125,145,.4)" stroke-width=".6"></g>
         <text id="sealInit" class="emb" y="2" text-anchor="middle" dominant-baseline="middle" font-family="Pinyon Script, cursive" font-size="25" fill="#ecebef" stroke="rgba(120,115,135,.45)" stroke-width=".5">T&amp;V</text>
         <circle class="sglow" r="38" fill="url(#sealGlow)"/>
+        <g class="orbit" fill="none" stroke="#fff" stroke-linecap="round"><circle r="39" stroke-width="18" stroke-opacity=".35" stroke-dasharray="100 245"/><circle r="39" stroke-width="15" stroke-opacity=".65" stroke-dasharray="62 245" stroke-dashoffset="-38"/><circle r="39" stroke-width="12" stroke-dasharray="30 245" stroke-dashoffset="-70"/></g>
         <g clip-path="url(#sealClip)"><g class="shine"><rect x="-60" y="-60" width="120" height="120" fill="url(#shineG)" transform="rotate(-25)"/></g></g>
       </svg>
     </button>
@@ -469,7 +480,9 @@ body.locked .hero{transform:scale(1.04)}
         <g stroke="#fff" stroke-linecap="round" opacity=".7">
           <path d="M120 492H170M230 498H300M90 510H140M250 520H310M150 530H200" stroke-width="1.2"/>
         </g>
-        <!-- couple -->
+      </g>
+    </svg>
+    <div class="walk" aria-hidden="true"><div class="bob"><svg viewBox="120 500 270 270">
         <g>
           <ellipse cx="200" cy="772" rx="90" ry="10" fill="#e6dcd3" opacity=".6"/>
           <path d="M152 602C146 630 145 660 148 690L156 690C155 660 156 632 160 608Z" fill="#e1d1b6"/>
@@ -488,6 +501,9 @@ body.locked .hero{transform:scale(1.04)}
           <path d="M218 548C220 536 236 536 238 548C246 590 264 650 302 708C324 740 352 758 378 770H200C205 700 209 620 214 570Z" fill="url(#lace)" opacity=".7"/>
           <path d="M238 548C246 590 264 650 302 708C324 740 352 758 378 770" fill="none" stroke="#efe7da" stroke-width="1.4"/>
         </g>
+    </svg></div></div>
+    <svg class="hero-front" viewBox="0 0 400 760" aria-hidden="true">
+      <g clip-path="url(#win)">
         <rect y="580" width="400" height="180" fill="url(#fadeB)"/>
         <g fill="none"><path d="M44 760V262C44 170 130 110 200 84C270 110 356 170 356 262V760" stroke="rgba(110,90,70,.08)" stroke-width="14"/><path d="M44 760V262C44 170 130 110 200 84C270 110 356 170 356 262V760" stroke="rgba(110,90,70,.1)" stroke-width="7"/><path d="M44 760V262C44 170 130 110 200 84C270 110 356 170 356 262V760" stroke="rgba(110,90,70,.14)" stroke-width="3"/></g>
       </g>
@@ -508,10 +524,10 @@ body.locked .hero{transform:scale(1.04)}
 
       <g id="heroFlora"></g>
     </svg>
-    <svg class="lan" viewBox="-30 -2 60 92" style="left:8.12%;top:24.72%;width:15.75%;animation-duration:5.5s;animation-delay:-0s" aria-hidden="true"><use href="#lantern"/></svg>
-    <svg class="lan" viewBox="-30 -2 60 92" style="left:16.60%;top:20.47%;width:10.80%;animation-duration:4.6s;animation-delay:-1.7s" aria-hidden="true"><use href="#lantern"/></svg>
-    <svg class="lan" viewBox="-30 -2 60 92" style="left:76.12%;top:24.72%;width:15.75%;animation-duration:5.2s;animation-delay:-2.6s" aria-hidden="true"><use href="#lantern"/></svg>
-    <svg class="lan" viewBox="-30 -2 60 92" style="left:72.60%;top:20.47%;width:10.80%;animation-duration:4.9s;animation-delay:-0.9s" aria-hidden="true"><use href="#lantern"/></svg>
+    <svg class="lan" viewBox="-30 -2 60 92" style="left:6.12%;top:24.93%;width:18.75%;animation-duration:2.9s;animation-delay:-0s" aria-hidden="true"><use href="#lantern"/></svg>
+    <svg class="lan" viewBox="-30 -2 60 92" style="left:15.40%;top:20.43%;width:13.20%;animation-duration:2.4s;animation-delay:-0.9s" aria-hidden="true"><use href="#lantern"/></svg>
+    <svg class="lan" viewBox="-30 -2 60 92" style="left:75.12%;top:24.93%;width:18.75%;animation-duration:2.7s;animation-delay:-1.4s" aria-hidden="true"><use href="#lantern"/></svg>
+    <svg class="lan" viewBox="-30 -2 60 92" style="left:71.40%;top:20.43%;width:13.20%;animation-duration:2.5s;animation-delay:-0.4s" aria-hidden="true"><use href="#lantern"/></svg>
     <div class="hero-text">
       <div class="w">Welcome to the</div>
       <div class="c" data-k="ceremony"></div>
@@ -1214,7 +1230,7 @@ function armReveals() {
     await wait(180); seal.style.transform = 'translate(-50%,-50%) scale(1)'; seal.classList.add('shined');
     // 2. the seal glows, then the light spreads out across the embossing
     if (!reduced) {
-      await wait(950); card.classList.add('shimmer');
+      await wait(1750); card.classList.add('shimmer');
       const pts = [[50, 10], [38, 14], [62, 14], [50, 30], [8, 36], [92, 36], [16, 48], [84, 48], [7, 62], [93, 62], [20, 70], [80, 70], [10, 82], [90, 82], [50, 86], [36, 92], [64, 92]];
       pts.forEach(([x, y]) => spark(x + (Math.random() * 6 - 3), y + (Math.random() * 4 - 2), .15 + Math.hypot(x - 50, (y - 62) * 1.9) / 100 * 1.5, y < 20 ? 1.2 : 1));
       await wait(2300);
