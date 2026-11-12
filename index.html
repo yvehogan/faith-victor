@@ -62,11 +62,12 @@ p{margin:0}
 .surf.body{clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%);background-color:#eceaef;background-image:var(--tex,none),linear-gradient(180deg,#efeef2,#e8e6ec);background-blend-mode:multiply}
 .surf.flap{clip-path:polygon(0 0,100% 0,50% 62%);background-color:#f2f1f4;background-image:var(--tex,none),linear-gradient(180deg,#f5f4f7,#eceaef);background-blend-mode:multiply;transform-origin:50% 0;will-change:transform}
 .emb{filter:drop-shadow(-.7px -.7px .3px rgba(255,255,255,.98)) drop-shadow(.8px 1px .7px rgba(92,88,115,.34))}
-.glint{opacity:0;pointer-events:none;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 5px rgba(255,255,255,.95));
-  -webkit-mask:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.4) 37%,#000 46%,#000 49%,transparent 58%) 0 100%/100% 300% no-repeat;
-  mask:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.4) 37%,#000 46%,#000 49%,transparent 58%) 0 100%/100% 300% no-repeat}
-.env-card.shimmer .glint{animation:glint 2.5s cubic-bezier(.45,.05,.35,1) forwards}
-@keyframes glint{0%{opacity:1;-webkit-mask-position:0 100%;mask-position:0 100%}72%{opacity:1}100%{opacity:0;-webkit-mask-position:0 0;mask-position:0 0}}
+@property --gr{syntax:'<percentage>';inherits:false;initial-value:0%}
+.glint{opacity:0;pointer-events:none;--gr:0%;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 5px rgba(255,255,255,.95));
+  -webkit-mask:radial-gradient(circle at 50% 62%,rgba(0,0,0,.45) 0,rgba(0,0,0,.45) calc(var(--gr) - 26%),#000 calc(var(--gr) - 12%),transparent var(--gr));
+  mask:radial-gradient(circle at 50% 62%,rgba(0,0,0,.45) 0,rgba(0,0,0,.45) calc(var(--gr) - 26%),#000 calc(var(--gr) - 12%),transparent var(--gr))}
+.env-card.shimmer .glint{animation:glint 2.5s cubic-bezier(.35,.05,.3,1) forwards}
+@keyframes glint{0%{opacity:1;--gr:4%}62%{opacity:1;--gr:130%}78%{opacity:.8;--gr:130%}100%{opacity:0;--gr:130%}}
 .sheen{position:absolute;inset:0;z-index:5;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.5) 49%,rgba(255,255,255,0) 58%) no-repeat;background-size:260% 100%;background-position:130% 0;mix-blend-mode:soft-light;animation:sheen 6s ease-in-out 1.2s infinite}
 @keyframes sheen{0%{background-position:130% 0}50%,100%{background-position:-60% 0}}
 .core,.bloom,.rays,.fan{position:absolute;pointer-events:none;opacity:0;mix-blend-mode:screen}
@@ -85,6 +86,12 @@ p{margin:0}
   mask:linear-gradient(180deg,#000,rgba(0,0,0,.35) 45%,transparent 90%),conic-gradient(from 120deg at 50% 0%,#000 0 120deg,transparent 120deg);mask-composite:intersect}
 .seal{position:absolute;left:50%;top:62%;width:27%;max-width:118px;aspect-ratio:1;transform:translate(-50%,-50%);z-index:8;cursor:pointer;border:0;padding:0;background:none;-webkit-tap-highlight-color:transparent;filter:drop-shadow(0 4px 5px rgba(60,55,75,.26)) drop-shadow(0 1px 1px rgba(60,55,75,.25))}
 .seal svg{width:100%;height:100%;display:block;overflow:visible}
+.seal::before{content:"";position:absolute;inset:-55%;border-radius:50%;z-index:-1;pointer-events:none;opacity:0;transform:scale(.5);background:radial-gradient(closest-side,rgba(255,255,255,.95) 0,rgba(255,255,255,.75) 30%,rgba(255,252,240,.3) 58%,rgba(255,255,255,0) 100%)}
+.seal.shined::before{animation:halo 3s ease-out forwards}
+@keyframes halo{0%{opacity:0;transform:scale(.5)}28%{opacity:1;transform:scale(1)}60%{opacity:.85;transform:scale(1.08)}100%{opacity:0;transform:scale(1.25)}}
+.seal .sglow{opacity:0;mix-blend-mode:screen}
+.seal.shined .sglow{animation:sglow 3s ease-in-out forwards}
+@keyframes sglow{0%{opacity:0}25%{opacity:1}60%{opacity:.9}100%{opacity:0}}
 .seal .shine{transform:translateX(-130px);transition:transform 1s cubic-bezier(.4,0,.3,1)}
 .seal.shined .shine{transform:translateX(130px)}
 .seal:focus-visible{outline:2px solid #b8b3c4;outline-offset:6px;border-radius:50%}
@@ -358,6 +365,7 @@ body.locked .hero{transform:scale(1.04)}
         <defs>
           <clipPath id="sealClip"><use href="#sealBlob"/></clipPath>
           <linearGradient id="shineG" x1="0" y1="0" x2="1" y2="0"><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset=".7" stop-color="#fff" stop-opacity="0"/></linearGradient>
+          <radialGradient id="sealGlow"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity=".25"/></radialGradient>
         </defs>
         <path id="sealBlob" fill="url(#wax)" stroke="rgba(150,145,165,.35)" stroke-width=".8"/>
         <circle r="37" fill="url(#wax2)"/>
@@ -365,6 +373,7 @@ body.locked .hero{transform:scale(1.04)}
         <circle r="37" fill="none" stroke="rgba(110,105,125,.35)" stroke-width="1.6" transform="translate(.9 .9)"/>
         <g id="sealWreath" class="emb" fill="#efedf0" stroke="rgba(130,125,145,.4)" stroke-width=".6"></g>
         <text id="sealInit" class="emb" y="2" text-anchor="middle" dominant-baseline="middle" font-family="Pinyon Script, cursive" font-size="25" fill="#ecebef" stroke="rgba(120,115,135,.45)" stroke-width=".5">T&amp;V</text>
+        <circle class="sglow" r="38" fill="url(#sealGlow)"/>
         <g clip-path="url(#sealClip)"><g class="shine"><rect x="-60" y="-60" width="120" height="120" fill="url(#shineG)" transform="rotate(-25)"/></g></g>
       </svg>
     </button>
@@ -1203,11 +1212,11 @@ function armReveals() {
     // 1. press + glint on the wax
     seal.style.transition = 'transform .18s ease'; seal.style.transform = 'translate(-50%,-50%) scale(.94)';
     await wait(180); seal.style.transform = 'translate(-50%,-50%) scale(1)'; seal.classList.add('shined');
-    // 2. light sweeps down the embossing
+    // 2. the seal glows, then the light spreads out across the embossing
     if (!reduced) {
-      await wait(350); card.classList.add('shimmer');
+      await wait(950); card.classList.add('shimmer');
       const pts = [[50, 10], [38, 14], [62, 14], [50, 30], [8, 36], [92, 36], [16, 48], [84, 48], [7, 62], [93, 62], [20, 70], [80, 70], [10, 82], [90, 82], [50, 86], [36, 92], [64, 92]];
-      pts.forEach(([x, y]) => spark(x + (Math.random() * 6 - 3), y + (Math.random() * 4 - 2), .1 + y / 100 * 1.7, y < 20 ? 1.2 : 1));
+      pts.forEach(([x, y]) => spark(x + (Math.random() * 6 - 3), y + (Math.random() * 4 - 2), .15 + Math.hypot(x - 50, (y - 62) * 1.9) / 100 * 1.5, y < 20 ? 1.2 : 1));
       await wait(2300);
     }
     seal.style.transition = '';
