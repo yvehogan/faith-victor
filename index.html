@@ -49,43 +49,52 @@ h2.script{font-size:42px}
 p{margin:0}
 
 /* ---------- envelope ---------- */
-.env{position:fixed;inset:0;z-index:50;display:flex;justify-content:center;background:var(--outside);transition:opacity 1.1s ease}
+.env{position:fixed;inset:0;z-index:50;display:flex;justify-content:center;background:var(--outside);transition:opacity .8s ease}
 .env.gone{opacity:0;pointer-events:none}
-.env-card{position:relative;width:100%;max-width:var(--col);height:100%;overflow:hidden;background:radial-gradient(60% 40% at 50% 42%,#e6d9c4,#c9b79c 70%,#bba98e);transition:transform 1.4s cubic-bezier(.3,.1,.2,1)}
-.env.zoom .env-card{transform:scale(1.18)}
-.fw{position:absolute;inset:0;filter:drop-shadow(0 1px 1.5px rgba(80,60,40,.22)) drop-shadow(0 0 6px rgba(80,60,40,.06))}
-.fw.top{perspective:1700px;perspective-origin:50% 50%;z-index:4}
-.flap{position:absolute;inset:0;background-color:#f6f2ec}
-.flap svg{position:absolute;inset:0;width:100%;height:100%}
-.flap.l{clip-path:polygon(0 0,50% 52%,0 100%);background-image:linear-gradient(90deg,#f7f3ee,#efe9e1)}
-.flap.r{clip-path:polygon(100% 0,50% 52%,100% 100%);background-image:linear-gradient(270deg,#f7f3ee,#efe9e1)}
-.flap.b{clip-path:polygon(0 100%,50% 56%,100% 100%);background-image:linear-gradient(0deg,#faf7f2,#f1ebe3)}
-.flap.t{clip-path:polygon(0 0,100% 0,50% 54%);background-image:linear-gradient(180deg,#fbf9f5,#f3eee7);transform-origin:50% 0;will-change:transform}
-.flap.paper-tex{background-blend-mode:multiply}
-.emb{filter:drop-shadow(-.7px -.7px .3px rgba(255,255,255,.95)) drop-shadow(.8px 1px .7px rgba(120,95,70,.3))}
-.sheen{position:absolute;inset:0;z-index:5;pointer-events:none;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.55) 48%,rgba(255,250,240,.0) 58%) no-repeat;background-size:260% 100%;background-position:130% 0;mix-blend-mode:soft-light;animation:sheen 5.5s ease-in-out 1s infinite}
-@keyframes sheen{0%{background-position:130% 0}55%,100%{background-position:-60% 0}}
-.core{position:absolute;left:50%;top:44%;width:44%;height:18%;transform:translate(-50%,-50%);border-radius:40%;background:radial-gradient(closest-side,#fff,#fff9ec 45%,rgba(255,240,210,0));opacity:0;filter:blur(2px);z-index:1}
-.rays,.bloom{position:absolute;left:50%;top:46%;pointer-events:none;z-index:6;opacity:0}
-.rays{width:260%;aspect-ratio:1;transform:translate(-50%,-50%);mix-blend-mode:screen;
+.env-card{position:relative;width:100%;max-width:var(--col);height:100%;overflow:hidden;background:radial-gradient(75% 45% at 50% 56%,#f8f1e6,#e6dacb 50%,#cfc2b2 85%,#c2b4a3);transition:transform .9s cubic-bezier(.3,.1,.2,1)}
+.env.gone .env-card{transform:scale(1.04)}
+.inlit{position:absolute;inset:0;opacity:0;background:radial-gradient(55% 38% at 50% 55%,rgba(255,252,244,.98),rgba(255,244,226,.6) 50%,rgba(255,238,215,.15) 100%)}
+.fw{position:absolute;inset:0}
+.fw.body{filter:drop-shadow(0 -1.5px 2.5px rgba(70,55,40,.28))}
+.fw.top{perspective:1800px;perspective-origin:50% 50%;z-index:4;filter:drop-shadow(0 1.2px 1.2px rgba(70,66,90,.2)) drop-shadow(0 3px 7px rgba(70,66,90,.08))}
+.surf{position:absolute;inset:0}
+.surf svg{position:absolute;inset:0;width:100%;height:100%}
+.surf.body{clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%);background-color:#eceaef;background-image:var(--tex,none),linear-gradient(180deg,#efeef2,#e8e6ec);background-blend-mode:multiply}
+.surf.flap{clip-path:polygon(0 0,100% 0,50% 62%);background-color:#f2f1f4;background-image:var(--tex,none),linear-gradient(180deg,#f5f4f7,#eceaef);background-blend-mode:multiply;transform-origin:50% 0;will-change:transform}
+.emb{filter:drop-shadow(-.7px -.7px .3px rgba(255,255,255,.98)) drop-shadow(.8px 1px .7px rgba(92,88,115,.34))}
+.glint{opacity:0;pointer-events:none;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 5px rgba(255,255,255,.95));
+  -webkit-mask:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.4) 37%,#000 46%,#000 49%,transparent 58%) 0 100%/100% 300% no-repeat;
+  mask:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.4) 37%,#000 46%,#000 49%,transparent 58%) 0 100%/100% 300% no-repeat}
+.env-card.shimmer .glint{animation:glint 2.5s cubic-bezier(.45,.05,.35,1) forwards}
+@keyframes glint{0%{opacity:1;-webkit-mask-position:0 100%;mask-position:0 100%}72%{opacity:1}100%{opacity:0;-webkit-mask-position:0 0;mask-position:0 0}}
+.sheen{position:absolute;inset:0;z-index:5;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.5) 49%,rgba(255,255,255,0) 58%) no-repeat;background-size:260% 100%;background-position:130% 0;mix-blend-mode:soft-light;animation:sheen 6s ease-in-out 1.2s infinite}
+@keyframes sheen{0%{background-position:130% 0}50%,100%{background-position:-60% 0}}
+.core,.bloom,.rays,.fan{position:absolute;pointer-events:none;opacity:0;mix-blend-mode:screen}
+.core{left:50%;top:55%;width:32%;height:16%;transform:translate(-50%,-50%);z-index:6;border-radius:14%;background:radial-gradient(closest-side,#fff 0,#fffdf8 62%,rgba(255,250,238,.6) 82%,rgba(255,248,230,0));filter:blur(4px)}
+.bloom{left:50%;top:55%;width:150%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:6;background:radial-gradient(closest-side,rgba(255,252,242,.9),rgba(255,244,222,.45) 22%,rgba(255,238,210,.12) 45%,rgba(255,236,205,0) 70%)}
+.rays{left:50%;top:55%;width:300%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:6;
   background:
-   repeating-conic-gradient(from 3deg,rgba(255,246,222,0) 0deg 5deg,rgba(255,246,222,.55) 6deg 7deg,rgba(255,246,222,0) 8deg 13deg),
-   repeating-conic-gradient(from 0deg,rgba(255,238,200,0) 0deg 9deg,rgba(255,238,200,.35) 10deg 12deg,rgba(255,238,200,0) 13deg 21deg);
-  -webkit-mask:radial-gradient(circle,#000 2%,rgba(0,0,0,.6) 12%,transparent 34%);mask:radial-gradient(circle,#000 2%,rgba(0,0,0,.6) 12%,transparent 34%)}
-.rays.on{animation:spin 40s linear infinite}
-@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.bloom{width:120%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,248,232,.55) 30%,rgba(255,240,215,0) 70%);mix-blend-mode:screen}
-.seal{position:absolute;left:50%;top:54%;width:27%;max-width:118px;aspect-ratio:1;transform:translate(-50%,-50%);z-index:8;cursor:pointer;border:0;padding:0;background:none;-webkit-tap-highlight-color:transparent;filter:drop-shadow(0 4px 5px rgba(70,50,30,.28)) drop-shadow(0 1px 1px rgba(70,50,30,.25))}
-.seal svg{width:100%;height:100%;display:block}
-.seal:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:50%}
-.seal.idle{animation:breathe 2.6s ease-in-out infinite}
-@keyframes breathe{50%{transform:translate(-50%,-50%) scale(1.04)}}
-.hint{position:absolute;left:0;right:0;bottom:calc(5.5% + env(safe-area-inset-bottom,0px));z-index:7;text-align:center;font-family:var(--serif);font-style:italic;font-size:15px;letter-spacing:.06em;color:#9a8b7c;animation:hint 2.6s ease-in-out infinite;transition:opacity .5s}
-.hint b{font-weight:500;font-style:normal;font-size:11px;letter-spacing:.28em;text-transform:uppercase;display:block;margin-bottom:2px;color:#a89580}
-@keyframes hint{50%{opacity:.55}}
-.spark{position:absolute;z-index:7;width:14px;height:14px;margin:-7px;pointer-events:none;opacity:0;background:radial-gradient(circle,#fff 0 18%,transparent 20%),conic-gradient(from 45deg,transparent 0 20deg,rgba(255,255,255,.95) 22deg 23deg,transparent 25deg 110deg,rgba(255,255,255,.95) 112deg 113deg,transparent 115deg 200deg,rgba(255,255,255,.95) 202deg 203deg,transparent 205deg 290deg,rgba(255,255,255,.95) 292deg 293deg,transparent 295deg);filter:drop-shadow(0 0 3px rgba(255,236,190,.95))}
-.spark.go{animation:twinkle 1.6s ease-in-out forwards}
-@keyframes twinkle{0%{opacity:0;transform:scale(.2) rotate(0)}40%{opacity:1;transform:scale(1.1) rotate(45deg)}100%{opacity:0;transform:scale(.3) rotate(90deg) translateY(-14px)}}
+   repeating-conic-gradient(from 2deg,rgba(255,248,230,0) 0deg 4deg,rgba(255,248,230,.5) 4.6deg 5.2deg,rgba(255,248,230,0) 6deg 11deg),
+   repeating-conic-gradient(from 7deg,rgba(255,240,212,0) 0deg 8deg,rgba(255,240,212,.32) 9deg 10.5deg,rgba(255,240,212,0) 11.5deg 19deg);
+  -webkit-mask:radial-gradient(circle,#000 1%,rgba(0,0,0,.55) 9%,rgba(0,0,0,.18) 20%,transparent 33%);mask:radial-gradient(circle,#000 1%,rgba(0,0,0,.55) 9%,rgba(0,0,0,.18) 20%,transparent 33%)}
+.rays.on{animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(-50%,-50%) rotate(6deg)}}
+.fan{left:-20%;right:-20%;top:55%;height:48%;z-index:6;
+  background:repeating-conic-gradient(from 126deg at 50% 0%,rgba(255,246,226,0) 0deg 3deg,rgba(255,246,226,.55) 3.6deg 4.6deg,rgba(255,246,226,0) 5.4deg 8deg);
+  -webkit-mask:linear-gradient(180deg,#000,rgba(0,0,0,.35) 45%,transparent 90%),conic-gradient(from 120deg at 50% 0%,#000 0 120deg,transparent 120deg);-webkit-mask-composite:source-in;
+  mask:linear-gradient(180deg,#000,rgba(0,0,0,.35) 45%,transparent 90%),conic-gradient(from 120deg at 50% 0%,#000 0 120deg,transparent 120deg);mask-composite:intersect}
+.seal{position:absolute;left:50%;top:62%;width:27%;max-width:118px;aspect-ratio:1;transform:translate(-50%,-50%);z-index:8;cursor:pointer;border:0;padding:0;background:none;-webkit-tap-highlight-color:transparent;filter:drop-shadow(0 4px 5px rgba(60,55,75,.26)) drop-shadow(0 1px 1px rgba(60,55,75,.25))}
+.seal svg{width:100%;height:100%;display:block;overflow:visible}
+.seal .shine{transform:translateX(-130px);transition:transform 1s cubic-bezier(.4,0,.3,1)}
+.seal.shined .shine{transform:translateX(130px)}
+.seal:focus-visible{outline:2px solid #b8b3c4;outline-offset:6px;border-radius:50%}
+.seal.idle{animation:breathe 2.8s ease-in-out infinite}
+@keyframes breathe{50%{transform:translate(-50%,-50%) scale(1.035)}}
+.hint{position:absolute;left:0;right:0;bottom:calc(4.5% + env(safe-area-inset-bottom,0px));z-index:7;text-align:center;font-family:var(--serif);font-style:italic;font-size:15px;letter-spacing:.06em;color:#9b96a6;animation:hint 2.8s ease-in-out infinite;transition:opacity .5s}
+@keyframes hint{50%{opacity:.5}}
+.spark{position:absolute;z-index:7;width:14px;height:14px;margin:-7px;pointer-events:none;opacity:0;background:radial-gradient(circle,#fff 0 18%,transparent 20%),conic-gradient(from 45deg,transparent 0 20deg,rgba(255,255,255,.95) 22deg 23deg,transparent 25deg 110deg,rgba(255,255,255,.95) 112deg 113deg,transparent 115deg 200deg,rgba(255,255,255,.95) 202deg 203deg,transparent 205deg 290deg,rgba(255,255,255,.95) 292deg 293deg,transparent 295deg);filter:drop-shadow(0 0 3px rgba(255,255,255,.95))}
+.spark.go{animation:twinkle 1.5s ease-in-out forwards}
+@keyframes twinkle{0%{opacity:0;transform:scale(.2) rotate(0)}40%{opacity:1;transform:scale(1.1) rotate(45deg)}100%{opacity:0;transform:scale(.3) rotate(90deg)}}
 
 /* ---------- floating music ---------- */
 .music{position:fixed;z-index:60;width:46px;height:46px;border-radius:50%;border:0;padding:0;cursor:pointer;
@@ -100,8 +109,8 @@ p{margin:0}
 .music .off{display:none}.music:not(.playing) .on{display:none}.music:not(.playing) .off{display:block}
 
 /* ---------- hero ---------- */
-.hero{position:relative;container-type:inline-size;transition:filter 1.6s ease,transform 1.8s cubic-bezier(.2,.7,.2,1)}
-body.locked .hero{filter:blur(6px);transform:scale(1.06)}
+.hero{position:relative;container-type:inline-size;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+body.locked .hero{transform:scale(1.04)}
 .hero>svg{display:block;width:100%;height:auto}
 .lan{position:absolute;height:auto;transform-origin:50% 2.2%;animation:swing 5s ease-in-out infinite alternate;will-change:transform;pointer-events:none}
 @keyframes swing{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
@@ -280,10 +289,10 @@ body.locked .hero{filter:blur(6px);transform:scale(1.06)}
       <stop offset="0" stop-color="#9c7a3e"/><stop offset=".45" stop-color="#e3cb8f"/><stop offset="1" stop-color="#a7843f"/>
     </linearGradient>
     <radialGradient id="wax" cx=".4" cy=".35" r=".7">
-      <stop offset="0" stop-color="#fdfbf7"/><stop offset=".55" stop-color="#efe9df"/><stop offset="1" stop-color="#d8cebf"/>
+      <stop offset="0" stop-color="#fdfcfd"/><stop offset=".55" stop-color="#efedf1"/><stop offset="1" stop-color="#d6d3dc"/>
     </radialGradient>
     <radialGradient id="wax2" cx=".6" cy=".65" r=".7">
-      <stop offset="0" stop-color="#f6f1e9"/><stop offset="1" stop-color="#e4dbcd"/>
+      <stop offset="0" stop-color="#f5f4f7"/><stop offset="1" stop-color="#e2dfe7"/>
     </radialGradient>
     <radialGradient id="lglass" cx=".5" cy=".5" r=".6">
       <stop offset="0" stop-color="#fffbe8"/><stop offset=".5" stop-color="#f3d993"/><stop offset="1" stop-color="#b98f48"/>
@@ -330,25 +339,36 @@ body.locked .hero{filter:blur(6px);transform:scale(1.06)}
 <!-- ============ ENVELOPE ============ -->
 <div class="env" id="env">
   <div class="env-card" id="envCard">
-    <div class="core" id="core"></div>
-    <div class="fw"><div class="flap l paper-tex"><svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" id="embL"></svg></div></div>
-    <div class="fw"><div class="flap r paper-tex"><svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" id="embR"></svg></div></div>
-    <div class="fw"><div class="flap b paper-tex"><svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" id="embB"></svg></div></div>
-    <div class="fw top"><div class="flap t paper-tex" id="flapT"><svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" id="embT"></svg></div></div>
+    <div class="inlit" id="inlit"></div>
+    <div class="fw body"><div class="surf body">
+      <svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" id="embBody"></svg>
+      <svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" class="glint" id="glBody"></svg>
+    </div></div>
+    <div class="fw top"><div class="surf flap" id="flapT">
+      <svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" id="embFlap"></svg>
+      <svg viewBox="0 0 430 900" preserveAspectRatio="xMidYMid slice" class="glint" id="glFlap"></svg>
+    </div></div>
     <div class="sheen" id="sheen"></div>
     <div class="bloom" id="bloom"></div>
+    <div class="fan" id="fan"></div>
     <div class="rays" id="rays"></div>
+    <div class="core" id="core"></div>
     <button class="seal idle" id="seal" aria-label="Open the invitation">
       <svg viewBox="-60 -60 120 120" aria-hidden="true">
-        <path id="sealBlob" fill="url(#wax)" stroke="rgba(170,150,125,.35)" stroke-width=".8"/>
+        <defs>
+          <clipPath id="sealClip"><use href="#sealBlob"/></clipPath>
+          <linearGradient id="shineG" x1="0" y1="0" x2="1" y2="0"><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset=".7" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        </defs>
+        <path id="sealBlob" fill="url(#wax)" stroke="rgba(150,145,165,.35)" stroke-width=".8"/>
         <circle r="37" fill="url(#wax2)"/>
         <circle r="37" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="1.6" transform="translate(-.9 -.9)"/>
-        <circle r="37" fill="none" stroke="rgba(130,105,80,.35)" stroke-width="1.6" transform="translate(.9 .9)"/>
-        <g id="sealWreath" class="emb" fill="#efe8dd" stroke="rgba(150,125,100,.4)" stroke-width=".6"></g>
-        <text id="sealInit" class="emb" y="2" text-anchor="middle" dominant-baseline="middle" font-family="Pinyon Script, cursive" font-size="25" fill="#ece5da" stroke="rgba(140,115,90,.45)" stroke-width=".5">T&amp;V</text>
+        <circle r="37" fill="none" stroke="rgba(110,105,125,.35)" stroke-width="1.6" transform="translate(.9 .9)"/>
+        <g id="sealWreath" class="emb" fill="#efedf0" stroke="rgba(130,125,145,.4)" stroke-width=".6"></g>
+        <text id="sealInit" class="emb" y="2" text-anchor="middle" dominant-baseline="middle" font-family="Pinyon Script, cursive" font-size="25" fill="#ecebef" stroke="rgba(120,115,135,.45)" stroke-width=".5">T&amp;V</text>
+        <g clip-path="url(#sealClip)"><g class="shine"><rect x="-60" y="-60" width="120" height="120" fill="url(#shineG)" transform="rotate(-25)"/></g></g>
       </svg>
     </button>
-    <div class="hint" id="hint"><b>You are invited</b>Tap the seal to open</div>
+    <div class="hint" id="hint">Tap the seal to open</div>
   </div>
 </div>
 
@@ -744,11 +764,29 @@ function sprig(x, y, s, rot, flip = 1) {
 }
 
 /* ---------- envelope embossing ---------- */
-const embWrap = s => `<g class="emb" fill="#f5f1eb" stroke="rgba(150,128,104,.32)" stroke-width=".9">${s}</g>`;
-$('#embT').innerHTML = embWrap(cluster('medallion', 215, 112, 1.25, 1, EMB) + sprig(40, 40, .9, 60) + sprig(390, 40, .9, -60, -1) + cluster('spray', 215, 300, .9, 1, EMB));
-$('#embL').innerHTML = embWrap(sprig(34, 250, 1.2, 8) + sprig(26, 470, 1.25, -4) + sprig(36, 680, 1.05, 10) + cluster('spray', 60, 470, .8, 1, EMB));
-$('#embR').innerHTML = embWrap(sprig(396, 250, 1.2, -8, -1) + sprig(404, 470, 1.25, 4, -1) + sprig(394, 680, 1.05, -10, -1) + cluster('spray', 370, 470, .8, -1, EMB));
-$('#embB').innerHTML = embWrap(cluster('medallion', 215, 812, 1.45, 1, EMB) + cluster('spray', 95, 870, .9, 1, EMB) + cluster('spray', 335, 870, .9, -1, EMB));
+(() => {
+  const P2 = { rose: 'fill="#eeedf1"', leaf: 'fill="#eeedf1"', bud: 'fill="#eeedf1"', gyp: 'fill="#eeedf1"' };
+  const bead = d => `<path d="${d}" fill="none" stroke="#eeedf1" stroke-width="3" stroke-dasharray="0 8" stroke-linecap="round"/>`;
+  const dots = (n, x0, x1, y0, y1, seed) => { let r = seed, o = ''; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
+    for (let i = 0; i < n; i++) o += `<use href="#gyp" ${P2.gyp} transform="translate(${(x0 + rnd() * (x1 - x0)).toFixed(0)} ${(y0 + rnd() * (y1 - y0)).toFixed(0)}) rotate(${(rnd() * 60 - 30).toFixed(0)}) scale(${(.5 + rnd() * .4).toFixed(2)})"/>`; return o; };
+  const body =
+    sprig(26, 330, 1.35, 6) + sprig(20, 560, 1.45, -3) + sprig(34, 770, 1.15, 8) + sprig(70, 470, .9, 14) + sprig(64, 690, .8, -10) +
+    sprig(404, 330, 1.35, -6, -1) + sprig(410, 560, 1.45, 3, -1) + sprig(396, 770, 1.15, -8, -1) + sprig(360, 470, .9, -14, -1) + sprig(366, 690, .8, 10, -1) +
+    cluster('spray', 92, 610, .75, 1, P2) + cluster('spray', 338, 610, .75, -1, P2) +
+    cluster('medallion', 215, 800, 1.65, 1, P2) + cluster('spray', 100, 872, 1.05, 1, P2) + cluster('spray', 330, 872, 1.05, -1, P2) +
+    cluster('corner', 18, 880, .55, 1, P2) + cluster('corner', 412, 880, .55, -1, P2) +
+    dots(9, 60, 170, 380, 760, 7) + dots(9, 260, 370, 380, 760, 11) + dots(5, 130, 300, 640, 720, 3) +
+    bead('M8 0L215 524L422 0') ;
+  const flap =
+    cluster('medallion', 215, 118, 1.5, 1, P2) + cluster('spray', 215, 262, 1, 1, P2) + cluster('spray', 215, 360, .7, 1, P2) +
+    sprig(70, 40, 1, 55) + sprig(360, 40, 1, -55, -1) + cluster('spray', 110, 150, .6, 1, P2) + cluster('spray', 320, 150, .6, -1, P2) +
+    dots(8, 120, 310, 190, 430, 5) + bead('M30 0L215 520L400 0');
+  const wrap = s => `<g class="emb" fill="#eeedf1" stroke="rgba(120,115,140,.3)" stroke-width=".9">${s}</g>`;
+  const glow = s => `<g fill="#ffffff" stroke="#ffffff" stroke-width="1.2">${s}</g>`;
+  const crease = '<g fill="none" stroke-linecap="round"><path d="M0 900L215 513L430 900" stroke="rgba(255,255,255,.9)" stroke-width="1.4" transform="translate(-.6 -.6)"/><path d="M0 900L215 513L430 900" stroke="rgba(95,90,115,.16)" stroke-width="1"/></g>';
+  $('#embBody').innerHTML = crease + wrap(body); $('#glBody').innerHTML = glow(body);
+  $('#embFlap').innerHTML = wrap(flap); $('#glFlap').innerHTML = glow(flap);
+})();
 
 /* ---------- wax seal ---------- */
 (() => {
@@ -1132,47 +1170,55 @@ function armReveals() {
   let opened = false;
   document.body.classList.add('locked');
   const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  const sparkle = () => {
-    const W = card.clientWidth, H = card.clientHeight;
-    for (let i = 0; i < 26; i++) {
-      const s = document.createElement('span'); s.className = 'spark';
-      const left = Math.random() < .5;
-      s.style.left = (left ? 4 + Math.random() * 22 : 74 + Math.random() * 22) * W / 100 + 'px';
-      s.style.top = (28 + Math.random() * 62) * H / 100 + 'px';
-      s.style.transformOrigin = 'center'; s.style.animationDelay = (Math.random() * 1.2) + 's';
-      const sc = .6 + Math.random() * .9; s.style.width = s.style.height = 14 * sc + 'px'; s.style.margin = -7 * sc + 'px';
-      card.appendChild(s); requestAnimationFrame(() => s.classList.add('go'));
-    }
+  const spark = (xPct, yPct, delay, size = 1) => {
+    const W = card.clientWidth, H = card.clientHeight, s = document.createElement('span'); s.className = 'spark';
+    s.style.left = xPct * W / 100 + 'px'; s.style.top = yPct * H / 100 + 'px'; s.style.animationDelay = delay + 's';
+    const sc = size * (.6 + Math.random() * .8); s.style.width = s.style.height = 14 * sc + 'px'; s.style.margin = -7 * sc + 'px';
+    card.appendChild(s); requestAnimationFrame(() => s.classList.add('go')); setTimeout(() => s.remove(), (delay + 1.8) * 1000);
   };
-  function open() {
+  const wait = ms => new Promise(r => setTimeout(r, reduced ? 0 : ms));
+  function lift() {
+    return new Promise(done => {
+      const W = card.clientWidth, H = card.clientHeight, h = .62 * H, P = 1800, cy = H / 2;
+      const proj = th => { const y = h * Math.cos(th), z = h * Math.sin(th), k = P / (P - z); return [cy + (y - cy) * k, k]; };
+      let thMax = 0; for (let d = 0; d <= 85; d += .5) { thMax = d * Math.PI / 180; if (proj(thMax)[0] <= H * .34) break; }
+      const core = $('#core'), rays = $('#rays'), bloom = $('#bloom'), fan = $('#fan'), inlit = $('#inlit');
+      const T0 = performance.now(), DUR = reduced ? 1 : 1700;
+      const frame = now => {
+        const t = Math.min(1, (now - T0) / DUR), e = ease(t), th = thMax * e, [y, k] = proj(th);
+        flap.style.transform = `rotateX(${th}rad)`;
+        seal.style.top = y + 'px'; seal.style.transform = `translate(-50%,-50%) scale(${k})`;
+        const lt = Math.min(1, Math.max(0, (t - .22) / .6));
+        inlit.style.opacity = lt; core.style.opacity = lt; bloom.style.opacity = lt * .85;
+        const rt = Math.min(1, Math.max(0, (t - .4) / .6)); rays.style.opacity = rt; fan.style.opacity = rt * .9;
+        if (t < 1) requestAnimationFrame(frame); else { rays.classList.add('on'); done(); }
+      };
+      requestAnimationFrame(frame);
+    });
+  }
+  async function open() {
     if (opened) return; opened = true;
     Music.play();
     seal.classList.remove('idle'); $('#hint').style.opacity = 0; $('#sheen').style.display = 'none';
-    const W = card.clientWidth, H = card.clientHeight, h = .54 * H, P = 1700, cy = H / 2;
-    const proj = th => { const y = h * Math.cos(th), z = h * Math.sin(th), k = P / (P - z); return [cy + (y - cy) * k, k]; };
-    let thMax = 0; for (let d = 0; d <= 80; d += .5) { thMax = d * Math.PI / 180; if (proj(thMax)[0] <= H * .3) break; }
-    const core = $('#core'), rays = $('#rays'), bloom = $('#bloom');
-    const T0 = performance.now(), DUR = reduced ? 1 : 1500;
-    const frame = now => {
-      const t = Math.min(1, (now - T0 - (reduced ? 0 : 180)) / DUR);
-      const press = reduced ? 1 : Math.min(1, (now - T0) / 180);
-      if (t < 0) { seal.style.transform = `translate(-50%,-50%) scale(${1 - .06 * Math.sin(press * Math.PI)})`; return requestAnimationFrame(frame); }
-      const e = ease(t), th = thMax * e, [y, k] = proj(th);
-      flap.style.transform = `rotateX(${th}rad)`;
-      seal.style.top = (y - 6 * k) + 'px'; seal.style.transform = `translate(-50%,-50%) scale(${k})`;
-      const lt = Math.max(0, (t - .2) / .8);
-      core.style.opacity = lt; bloom.style.opacity = lt * .9; rays.style.opacity = Math.max(0, (t - .35) / .65);
-      if (t < 1) requestAnimationFrame(frame);
-      else {
-        rays.classList.add('on'); if (!reduced) sparkle();
-        setTimeout(() => {
-          env.classList.add('zoom', 'gone'); document.body.classList.remove('locked');
-          window.scrollTo(0, 0); armReveals(); Smooth.resume();
-          setTimeout(() => env.remove(), 1300);
-        }, reduced ? 50 : 1700);
-      }
-    };
-    requestAnimationFrame(frame);
+    // 1. press + glint on the wax
+    seal.style.transition = 'transform .18s ease'; seal.style.transform = 'translate(-50%,-50%) scale(.94)';
+    await wait(180); seal.style.transform = 'translate(-50%,-50%) scale(1)'; seal.classList.add('shined');
+    // 2. light sweeps down the embossing
+    if (!reduced) {
+      await wait(350); card.classList.add('shimmer');
+      const pts = [[50, 10], [38, 14], [62, 14], [50, 30], [8, 36], [92, 36], [16, 48], [84, 48], [7, 62], [93, 62], [20, 70], [80, 70], [10, 82], [90, 82], [50, 86], [36, 92], [64, 92]];
+      pts.forEach(([x, y]) => spark(x + (Math.random() * 6 - 3), y + (Math.random() * 4 - 2), .1 + y / 100 * 1.7, y < 20 ? 1.2 : 1));
+      await wait(2300);
+    }
+    seal.style.transition = '';
+    // 3. the flap lifts, the light comes through
+    await lift();
+    if (!reduced) [[10, 40], [88, 44], [14, 58], [86, 60], [8, 72], [92, 74], [18, 84], [82, 86], [30, 66], [70, 66]].forEach(([x, y], i) => spark(x, y, .15 + i * .08));
+    await wait(1500);
+    // 4. crossfade into the invitation
+    env.classList.add('gone'); document.body.classList.remove('locked');
+    window.scrollTo(0, 0); armReveals(); Smooth.resume();
+    setTimeout(() => env.remove(), 1000);
   }
   seal.addEventListener('click', open);
 })();
